@@ -1,0 +1,86 @@
+<html>
+    <head>
+<title>STOP WATCH</title>
+<style>
+    body,html{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: grey;
+        height: 100%;
+        flex-direction: column;
+    }
+    .stopwatch{
+      background-color: rgb(75, 145, 145);
+        padding: 20px 24px;
+        border-radius: 10px;
+    }
+    .button{
+       
+        padding: 20px 24px;
+        border-radius: 10px;
+    }
+    .start{
+        padding: 10px 14px;
+        border-radius: 10px;background-color: rgb(220, 225, 229);
+
+    }
+    .stop{
+        padding: 10px 14px;
+        border-radius: 10px;background-color: rgb(181, 176, 185);
+
+    }
+    .reset{
+        padding: 10px 14px;
+        border-radius: 10px;background-color: rgb(176, 171, 181);
+
+    }
+
+
+   
+</style>
+    </head>
+    <body>
+        <div class="container">
+           <div class="stopwatch" id="stopwatch">00:00:00</div>
+           <div class="button">
+           <button class="start" onclick="startTimer()">Start </button>
+           <button class="stop" onclick="stoptTimer()">Stop </button>
+           <button class="reset" onclick="resetTimer()">Reset </button>
+           
+
+           </div>
+        </div>
+    </body>
+    <script>
+        let   timer, second = 0;
+        const stopwatch = document.getElementById('stopwatch');
+
+        function updateTime(){
+            stopwatch.textContent = new Date(second * 1000).toISOString().substr(11,8);
+        }
+        function startTimer(){
+            timer = setInterval(function(){
+                second++;
+                updateTime();
+            }
+            , 1000);
+
+        }
+        function stoptTimer(){
+            clearInterval(timer);
+        }
+
+        function resetTimer(){
+            clearInterval(timer);
+            second =0;
+            updateTime();
+        }
+    </script>
+</html>
